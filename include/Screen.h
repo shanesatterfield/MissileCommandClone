@@ -50,7 +50,7 @@ namespace mc
 		MCEM em;
 		int spawnDelayFrames = 0;
 		int spawnDelayTotal  = 200;
-		int spawnPerWave 	 = 3;
+		int spawnPerWave 	 = 4;
 	};
 
 	class GameOverScreen: public Screen

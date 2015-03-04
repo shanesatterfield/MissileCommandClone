@@ -261,7 +261,12 @@ void mc::MCEM::handleMouseMotion( int x, int y )
 mc::Entity* mc::MCEM::getRandomStructure()
 {
 	// Get the target structure index;
-	int target = rand() % (cities.size()/* + commandStations.size()*/);
+	int structureAmount = cities.size();
+
+	if( structureAmount < 1 )
+		return nullptr;
+
+	int target = rand() % ( structureAmount /* + commandStations.size()*/);
 
 	// Return the structure. Depending on the value, it will either be a
 	// command station or a city.

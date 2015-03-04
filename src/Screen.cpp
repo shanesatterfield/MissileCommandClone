@@ -66,9 +66,6 @@ bool mc::GameScreen::init()
 	if( em.init() == false )
 		return false;
 
-	for( int i = 0; i < 20; ++i )
-
-		em.spawnEnemyMissile();
 	return true;
 }
 
@@ -86,7 +83,7 @@ void mc::GameScreen::update()
 
 		spawnDelayFrames = spawnDelayTotal;
 
-		for( int i = 0; i < 3; ++i )
+		for( int i = 0; i < spawnPerWave; ++i )
 			em.spawnEnemyMissile();
 	}
 	em.update();
