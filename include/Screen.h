@@ -16,6 +16,7 @@ namespace mc
 		virtual void update() = 0;
 		virtual void render() = 0;
 		virtual void handleEvent( SDL_Event &event ) = 0;
+		virtual void reset();
 		void setSM( ScreenManager* sm );
 
 	protected:
@@ -44,13 +45,15 @@ namespace mc
 		virtual void update();
 		virtual void render();
 		virtual void close();
+		virtual void reset();
 		virtual void handleEvent( SDL_Event &event );
 
 	private:
 		MCEM em;
-		int spawnDelayFrames = 0;
-		int spawnDelayTotal  = 200;
-		int spawnPerWave 	 = 4;
+		int spawnDelayFrames 		= 0;
+		int spawnDelayTotal  		= 200;
+		int spawnDelayTotalInitial  = 200;
+		int spawnPerWave 	 		= 4;
 	};
 
 	class GameOverScreen: public Screen
@@ -60,6 +63,7 @@ namespace mc
 		virtual bool init();
 		virtual void update();
 		virtual void render();
+		virtual void reset();
 		virtual void handleEvent( SDL_Event &event );
 
 	private:

@@ -45,6 +45,7 @@ void mc::ScreenManager::render()
 void mc::ScreenManager::changeScreen( ScreenName name )
 {
 	currentScreen = name;
+	screens[ currentScreen ]->reset();
 }
 
 void mc::ScreenManager::close()

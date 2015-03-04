@@ -14,6 +14,8 @@ void mc::Screen::setSM( mc::ScreenManager* sm )
 	this->sm = sm;
 }
 
+void mc::Screen::reset(){}
+
 mc::TitleScreen::~TitleScreen()
 {
 	close();
@@ -66,6 +68,9 @@ bool mc::GameScreen::init()
 	if( em.init() == false )
 		return false;
 
+	spawnDelayFrames = 0;
+	spawnDelayTotal = spawnDelayTotalInitial;
+
 	return true;
 }
 
@@ -97,6 +102,15 @@ void mc::GameScreen::render()
 void mc::GameScreen::close()
 {
 	em.close();
+}
+
+void mc::GameScreen::reset()
+{
+	printf("Closing\n");
+	this->close();
+	printf("Initializing\n");
+	this->init();
+	printf("Finished\n");
 }
 
 void mc::GameScreen::handleEvent( SDL_Event &event )
@@ -132,6 +146,8 @@ bool mc::GameOverScreen::init()
 		printf("GameOverScreen Error: Failed to load finalExplosion.\n");
 		return false;
 	}
+
+	frameCounter = 0;
 
 	framePosition.x = 0;
 	framePosition.y = 0;
@@ -173,4 +189,10 @@ void mc::GameOverScreen::handleEvent( SDL_Event &event )
 	{
 		this->sm->changeScreen( TITLE_SCREEN );
 	}
+}
+
+void mc::GameOverScreen::reset()
+{
+	frameCounter = 0;
+	explosionFrame = -1;
 }

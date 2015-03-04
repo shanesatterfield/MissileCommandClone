@@ -178,20 +178,12 @@ void mc::MCEM::render()
 
 void mc::MCEM::close()
 {
-	for( int i = 0; i < entities.size(); ++i )
-	{
-		if( entities[i] != nullptr )
-		{
-			delete entities[i];
-			entities[i] = nullptr;
-		}
-	}
+	mc::EntityManager::close();
 
 	entities.clear();
-	/*
 	commandStations.clear();
-	*/
 	cities.clear();
+
 }
 
 void mc::MCEM::spawnEnemyMissile()
