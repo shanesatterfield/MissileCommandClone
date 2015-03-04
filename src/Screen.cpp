@@ -76,15 +76,12 @@ bool mc::GameScreen::init()
 
 void mc::GameScreen::update()
 {
-	//enemyMissile->update();
-	//em.spawnEnemyMissile();
-
 	if( spawnDelayFrames-- <= 0 )
 	{
 		// spawnDelayFrames = rand() % 100 + 100;
 
-		if( spawnDelayTotal > 10 )
-			spawnDelayTotal -= 10;
+		if( spawnDelayTotal > 15 )
+			spawnDelayTotal -= 5;
 
 		spawnDelayFrames = spawnDelayTotal;
 
@@ -106,11 +103,8 @@ void mc::GameScreen::close()
 
 void mc::GameScreen::reset()
 {
-	printf("Closing\n");
 	this->close();
-	printf("Initializing\n");
 	this->init();
-	printf("Finished\n");
 }
 
 void mc::GameScreen::handleEvent( SDL_Event &event )
@@ -182,9 +176,7 @@ void mc::GameOverScreen::render()
 void mc::GameOverScreen::handleEvent( SDL_Event &event )
 {
 	if( event.type == SDL_KEYDOWN &&
-		event.key.keysym.sym == SDLK_RETURN ||
-		event.type == SDL_MOUSEBUTTONUP &&
-		event.button.button == SDL_BUTTON_LEFT
+		event.key.keysym.sym == SDLK_RETURN
 	)
 	{
 		this->sm->changeScreen( TITLE_SCREEN );

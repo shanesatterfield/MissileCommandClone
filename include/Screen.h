@@ -53,7 +53,7 @@ namespace mc
 		int spawnDelayFrames 		= 0;
 		int spawnDelayTotal  		= 200;
 		int spawnDelayTotalInitial  = 200;
-		int spawnPerWave 	 		= 4;
+		int spawnPerWave 	 		= 2;
 	};
 
 	class GameOverScreen: public Screen
