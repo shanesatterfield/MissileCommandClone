@@ -47,12 +47,10 @@ namespace mc
 		virtual void handleEvent( SDL_Event &event );
 
 	private:
-		//SDL_Texture* enemyMissile = nullptr;
-		//EnemyMissile* enemyMissile = nullptr;
 		MCEM em;
 		int spawnDelayFrames = 0;
-		int spawnDelayTotal = 100;
-		int spawnPerWave = 3;
+		int spawnDelayTotal  = 200;
+		int spawnPerWave 	 = 3;
 	};
 
 	class GameOverScreen: public Screen
@@ -68,8 +66,8 @@ namespace mc
 		SDL_Texture* gameOverText   = nullptr;
 		SDL_Texture* finalExplosion = nullptr;
 		int explosionFrame = -1;
-		int frameCounter = 0;
-		int finalFrame = 11;
+		int frameCounter   = 0;
+		int finalFrame 	   = 11;
 		SDL_Rect framePosition;
 		SDL_Rect screenPosition;
 	};

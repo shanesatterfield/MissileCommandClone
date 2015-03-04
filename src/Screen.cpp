@@ -81,8 +81,8 @@ void mc::GameScreen::update()
 	{
 		// spawnDelayFrames = rand() % 100 + 100;
 
-		if( spawnDelayTotal > 0 )
-			spawnDelayTotal -= 1;
+		if( spawnDelayTotal > 10 )
+			spawnDelayTotal -= 10;
 
 		spawnDelayFrames = spawnDelayTotal;
 
