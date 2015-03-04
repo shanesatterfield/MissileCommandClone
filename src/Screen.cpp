@@ -4,7 +4,6 @@
 
 #include <iostream>
 
-#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
 #include <TextureFactory.h>
@@ -22,34 +21,6 @@ mc::TitleScreen::~TitleScreen()
 
 bool mc::TitleScreen::init()
 {
-	/*
-	SDL_Color color = {255, 255, 255};
-	std::string fontPath = std::string(MC_RES_PATH) + "fonts/ZOMBIFIED.ttf";
-	TTF_Font* font = TTF_OpenFont(fontPath.c_str(), 25);
-	if( font == nullptr )
-	{
-		printf("Error: Could not load font at %s\n", fontPath.c_str());
-		return false;
-	}
-
-	SDL_Surface* surf = TTF_RenderText_Solid(font, "Missile Command", color);
-	if( surf == nullptr )
-	{
-		TTF_CloseFont( font );
-		return false;
-	}
-
-	title = SDL_CreateTextureFromSurface( mc::renderer, surf );
-	if( title == nullptr )
-	{
-		TTF_CloseFont( font );
-		SDL_FreeSurface( surf );
-		return false;
-	}
-
-	TTF_CloseFont( font );
-	SDL_FreeSurface( surf );
-	*/
 	title = mc::TextureFactory::loadTexture("titleImage", std::string(MC_RES_PATH) + "images/title_bg.png");
 	if( title == nullptr )
 	{
@@ -60,28 +31,14 @@ bool mc::TitleScreen::init()
 	return true;
 }
 
-void mc::TitleScreen::update()
-{
-
-}
+void mc::TitleScreen::update(){}
 
 void mc::TitleScreen::render()
 {
-	//SDL_Rect dest = {100, 100, 500, 150};
-	//SDL_RenderCopy( mc::renderer, title, nullptr, &dest );
 	SDL_RenderCopy( mc::renderer, title, nullptr, nullptr );
 }
 
-void mc::TitleScreen::close()
-{
-	/*
-	if( title != nullptr )
-	{
-		SDL_DestroyTexture( title );
-		title = nullptr;
-	}
-	*/
-}
+void mc::TitleScreen::close(){}
 
 void mc::TitleScreen::handleEvent( SDL_Event &event )
 {
@@ -106,32 +63,12 @@ mc::GameScreen::~GameScreen()
 
 bool mc::GameScreen::init()
 {
-	/*
-	SDL_Surface* surf = IMG_Load((std::string(MC_RES_PATH) + "images/missile.png").c_str());
-	enemyMissile = SDL_CreateTextureFromSurface( mc::renderer, surf );
-	if( enemyMissile == nullptr )
-	{
-		printf("Error: Could not load enemy missile texture.\n");
-		SDL_FreeSurface( surf );
-		return false;
-	}
-
-	SDL_FreeSurface( surf );
-	*/
-
-	/*
-	enemyMissile = new mc::EnemyMissile;
-	if( enemyMissile->init() == false )
-		return false;
-	*/
-
 	if( em.init() == false )
 		return false;
 
 	for( int i = 0; i < 20; ++i )
+
 		em.spawnEnemyMissile();
-	/*
-	*/
 	return true;
 }
 
@@ -157,21 +94,11 @@ void mc::GameScreen::update()
 
 void mc::GameScreen::render()
 {
-	//SDL_RenderCopy( mc::renderer, enemyMissile, 0, 0 );
-	//enemyMissile->render();
 	em.render();
 }
 
 void mc::GameScreen::close()
 {
-	/*
-	if( enemyMissile != nullptr )
-	{
-		//SDL_DestroyTexture( enemyMissile );
-		delete enemyMissile;
-		enemyMissile = nullptr;
-	}
-	*/
 	em.close();
 }
 
@@ -202,7 +129,6 @@ bool mc::GameOverScreen::init()
 		return false;
 	}
 
-	// finalExplosion = mc::TextureFactory::loadTexture("finalExplosion", std::string(MC_RES_PATH) + "images/realigned_explosion_01.png");
 	finalExplosion = mc::TextureFactory::loadTexture("finalExplosion", std::string(MC_RES_PATH) + "images/end-explosion-fixed.png");
 	if( finalExplosion == nullptr )
 	{
@@ -210,7 +136,6 @@ bool mc::GameOverScreen::init()
 		return false;
 	}
 
-	// 192
 	framePosition.x = 0;
 	framePosition.y = 0;
 	framePosition.w = 192;
@@ -220,8 +145,6 @@ bool mc::GameOverScreen::init()
 	screenPosition.y = mc::SCREEN_HEIGHT/2.0 - framePosition.h/2.0;
 	screenPosition.w = framePosition.w;
 	screenPosition.h = framePosition.h;
-	/*
-	*/
 
 	return true;
 }
@@ -233,7 +156,6 @@ void mc::GameOverScreen::update()
 	{
 		explosionFrame += 1;
 		framePosition.x = framePosition.w * explosionFrame;
-		printf("Frame Position X: %d\n", framePosition.x);
 		frameCounter = 0;
 	}
 }
@@ -246,5 +168,12 @@ void mc::GameOverScreen::render()
 
 void mc::GameOverScreen::handleEvent( SDL_Event &event )
 {
-
+	if( event.type == SDL_KEYDOWN &&
+		event.key.keysym.sym == SDLK_RETURN ||
+		event.type == SDL_MOUSEBUTTONUP &&
+		event.button.button == SDL_BUTTON_LEFT
+	)
+	{
+		this->sm->changeScreen( TITLE_SCREEN );
+	}
 }

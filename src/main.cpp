@@ -1,6 +1,5 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
 #include <iostream>
 
 #include <ScreenManager.h>
@@ -63,7 +62,6 @@ bool init()
 		return failed("Error: Failed to initialize SDL2.\n");
 	}
 
-	TTF_Init();
 	IMG_Init( IMG_INIT_JPG | IMG_INIT_PNG );
 
 	mc::window = SDL_CreateWindow( "Missile Command Clone", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mc::SCREEN_WIDTH, mc::SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
@@ -107,6 +105,5 @@ void close()
 	mc::TextureFactory::close();
 
 	IMG_Quit();
-	TTF_Quit();
 	SDL_Quit();
 }
