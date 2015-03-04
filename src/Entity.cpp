@@ -328,7 +328,7 @@ void mc::City::setCity( int cityNumber )
 
 	bbox.x = change;
 	pos.x = change;
-	printf("City %d: %d %d %d %d\n", this->cityNumber, bbox.x, bbox.y, bbox.w, bbox.h);
+	// printf("City %d: %d %d %d %d\n", this->cityNumber, bbox.x, bbox.y, bbox.w, bbox.h);
 }
 
 int mc::City::getCityNumber()
@@ -340,7 +340,7 @@ void mc::City::hit( mc::EntityType type )
 {
 	if( type == ENEMY_MISSILE )
 	{
-		printf("City %d Destroyed\n", this->getCityNumber());
+		// printf("City %d Destroyed\n", this->getCityNumber());
 		// kill();
 		this->setCollidable( false );
 
@@ -405,9 +405,11 @@ void mc::CommandStation::setCity( int cityNumber )
 	centerPoint.x = bbox.h/2;
 	centerPoint.y = pos.h - bbox.h/2;
 
+	/*
 	printf("Command Station BBox %d: %d %d %d %d\n", this->cityNumber, bbox.x, bbox.y, bbox.w, bbox.h);
 	printf("Command Station  Pos %d: %d %d %d %d\n", this->cityNumber,  pos.x,  pos.y,  pos.w,  pos.h);
 	printf("Command Station   CP %d: %d %d\n", this->cityNumber,  centerPoint.x,  centerPoint.y);
+	*/
 }
 
 void mc::CommandStation::setAngle( double newAngle )

@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <ScreenManager.h>
 
-#define MC_RES_PATH "/home/shane/Dropbox/MCC/res/"
+#define MC_RES_PATH "/home/shane/repos/MissileCommandClone/res/"
 
 namespace mc
 {

@@ -45,7 +45,7 @@ void mc::TextureFactory::close()
 	{
 		if( iter.second != nullptr )
 		{
-			printf("Deallocating Texture: %s\n", iter.first.c_str());
+			// printf("Deallocating Texture: %s\n", iter.first.c_str());
 			SDL_DestroyTexture( iter.second );
 			iter.second = nullptr;
 			textureMap[ iter.first ] = nullptr;
