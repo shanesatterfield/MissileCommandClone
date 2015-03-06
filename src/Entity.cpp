@@ -368,7 +368,7 @@ bool mc::CommandStation::init()
 {
 	this->type = ENTITY_STRUCTURE;
 
-	cityTexture = mc::TextureFactory::loadTexture("commandStation", std::string(MC_RES_PATH) + "images/ground base artillery 2.png");
+	cityTexture = mc::TextureFactory::loadTexture("commandStation", std::string(MC_RES_PATH) + "images/ground base artillery.png");
 	if( cityTexture == nullptr )
 		return false;
 

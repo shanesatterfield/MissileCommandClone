@@ -134,7 +134,7 @@ bool mc::GameOverScreen::init()
 		return false;
 	}
 
-	finalExplosion = mc::TextureFactory::loadTexture("finalExplosion", std::string(MC_RES_PATH) + "images/end-explosion-fixed.png");
+	finalExplosion = mc::TextureFactory::loadTexture("finalExplosion", std::string(MC_RES_PATH) + "images/end-explosion.png");
 	if( finalExplosion == nullptr )
 	{
 		printf("GameOverScreen Error: Failed to load finalExplosion.\n");
